@@ -1,0 +1,22 @@
+@startuml
+class com.structural.FacadePattern.exercise1.Subsystem2 {
++ String Operation1()
++ String Operation2()
+}
+class com.structural.FacadePattern.exercise1.Main {
++ {static} void main(String[])
+}
+class com.structural.FacadePattern.exercise1.Facade {
+~ Subsystem1 subsystem1
+~ Subsystem2 subsystem2
++ <<Create>> Facade(Subsystem1,Subsystem2)
++ String Operation()
+}
+class com.structural.FacadePattern.exercise1.Client {
++ {static} void ClientCode(Facade)
+}
+class com.structural.FacadePattern.exercise1.Subsystem1 {
++ String Operation1()
++ String Operation2()
+}
+@enduml

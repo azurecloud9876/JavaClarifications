@@ -1,0 +1,42 @@
+@startuml
+class com.structural.adapterPattern.exercise2.EmployeeClassAdapter {
++ String getName()
++ String getDesignation()
++ String getAddress()
+}
+class com.structural.adapterPattern.exercise2.BusinessCardDesigner {
++ String designCard(Customer)
+}
+class com.structural.adapterPattern.exercise2.Employee {
+- String fullName
+- String jobTitle
+- String officeLocation
++ String getFullName()
++ void setFullName(String)
++ String getJobTitle()
++ void setJobTitle(String)
++ String getOfficeLocation()
++ void setOfficeLocation(String)
+}
+class com.structural.adapterPattern.exercise2.Main {
++ {static} void main(String[])
+- {static} void populateEmployeeData(Employee)
+}
+interface com.structural.adapterPattern.exercise2.Customer {
+~ String getName()
+~ String getDesignation()
+~ String getAddress()
+}
+class com.structural.adapterPattern.exercise2.EmployeeObjectAdapter {
+- Employee adaptee
++ <<Create>> EmployeeObjectAdapter(Employee)
++ String getName()
++ String getDesignation()
++ String getAddress()
+}
+
+
+com.structural.adapterPattern.exercise2.Customer <|.. com.structural.adapterPattern.exercise2.EmployeeClassAdapter
+com.structural.adapterPattern.exercise2.Employee <|-- com.structural.adapterPattern.exercise2.EmployeeClassAdapter
+com.structural.adapterPattern.exercise2.Customer <|.. com.structural.adapterPattern.exercise2.EmployeeObjectAdapter
+@enduml

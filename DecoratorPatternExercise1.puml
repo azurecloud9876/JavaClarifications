@@ -1,0 +1,35 @@
+@startuml
+class com.structural.DecoratorPattern.exercise1.Client {
++ {static} void main(String[])
+}
+interface com.structural.DecoratorPattern.exercise1.Sandwich {
+~ int getCost()
+~ String getItemName()
+}
+class com.structural.DecoratorPattern.exercise1.Egg {
+~ <<Create>> Egg(Sandwich)
++ int getCost()
++ String getItemName()
+}
+class com.structural.DecoratorPattern.exercise1.BasicSandwich {
++ int getCost()
++ String getItemName()
+}
+abstract class com.structural.DecoratorPattern.exercise1.SandwichDecorator {
+- Sandwich sandwich
++ <<Create>> SandwichDecorator(Sandwich)
++ int getCost()
++ String getItemName()
+}
+class com.structural.DecoratorPattern.exercise1.Cheese {
+~ <<Create>> Cheese(Sandwich)
++ int getCost()
++ String getItemName()
+}
+
+
+com.structural.DecoratorPattern.exercise1.SandwichDecorator <|-- com.structural.DecoratorPattern.exercise1.Egg
+com.structural.DecoratorPattern.exercise1.Sandwich <|.. com.structural.DecoratorPattern.exercise1.BasicSandwich
+com.structural.DecoratorPattern.exercise1.Sandwich <|.. com.structural.DecoratorPattern.exercise1.SandwichDecorator
+com.structural.DecoratorPattern.exercise1.SandwichDecorator <|-- com.structural.DecoratorPattern.exercise1.Cheese
+@enduml

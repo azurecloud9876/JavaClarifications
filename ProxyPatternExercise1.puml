@@ -1,0 +1,23 @@
+@startuml
+interface com.proxy.ISP {
+~ String serverSite(String)
+}
+class com.proxy.Etisalat {
+- int browsingSpeed
++ String serverSite(String)
++ int getBrowsingSpeed()
++ void setBrowsingSpeed(int)
+}
+class com.proxy.Client {
++ {static} void main(String[])
+}
+class com.proxy.InternetProxy {
+- List<String> blockedSites
++ String serverSite(String)
+- void logSite(String)
+}
+
+
+com.proxy.ISP <|.. com.proxy.Etisalat
+com.proxy.ISP <|.. com.proxy.InternetProxy
+@enduml

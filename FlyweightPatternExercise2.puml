@@ -1,0 +1,40 @@
+@startuml
+class com.coffeepoweredcrew.flyweight.UserBannedErrorMessage {
+- String caseId
+- String remarks
+- Duration banDuration
+- String msg
++ <<Create>> UserBannedErrorMessage(String)
++ String getText(String)
++ String getCaseNo()
+}
+class com.coffeepoweredcrew.flyweight.Client {
++ {static} void main(String[])
+}
+class com.coffeepoweredcrew.flyweight.ErrorMessageFactory {
+- {static} ErrorMessageFactory FACTORY
+- Map<ErrorType,SystemErrorMessage> errorMessages
+- <<Create>> ErrorMessageFactory()
++ {static} ErrorMessageFactory getInstance()
++ SystemErrorMessage getError(ErrorType)
++ UserBannedErrorMessage getUserBannedMessage(String)
+}
+enum com.coffeepoweredcrew.flyweight.ErrorType {
++  GenericSystemError
++  PageNotFoundError
++  ServerError
+}
+class com.coffeepoweredcrew.flyweight.SystemErrorMessage {
+- String messageTemplate
+- String helpUrlBase
++ <<Create>> SystemErrorMessage(String,String)
++ String getText(String)
+}
+interface com.coffeepoweredcrew.flyweight.ErrorMessage {
+~ String getText(String)
+}
+
+
+com.coffeepoweredcrew.flyweight.ErrorMessage <|.. com.coffeepoweredcrew.flyweight.UserBannedErrorMessage
+com.coffeepoweredcrew.flyweight.ErrorMessage <|.. com.coffeepoweredcrew.flyweight.SystemErrorMessage
+@enduml

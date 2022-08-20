@@ -1,0 +1,61 @@
+@startuml
+class com.structural.FacadePattern.exercise2.email.TemplateFactory {
++ {static} Template createTemplateFor(TemplateType)
+}
+interface com.structural.FacadePattern.exercise2.email.Stationary {
+~ String getHeader()
+~ String getFooter()
+}
+abstract class com.structural.FacadePattern.exercise2.email.Template {
++ {abstract}String format(Object)
+}
+class com.structural.FacadePattern.exercise2.Order {
+- String id
+- double total
++ <<Create>> Order(String,double)
++ String getId()
++ void setId(String)
++ double getTotal()
++ void setTotal(double)
+}
+class com.structural.FacadePattern.exercise2.email.Email {
++ {static} EmailBuilder getBuilder()
+}
+class com.structural.FacadePattern.exercise2.email.StationaryFactory {
++ {static} Stationary createStationary()
+}
+class com.structural.FacadePattern.exercise2.Client {
++ {static} void main(String[])
+}
+class com.structural.FacadePattern.exercise2.email.Mailer {
+- {static} Mailer MAILER
+- <<Create>> Mailer()
++ {static} Mailer getMailer()
++ boolean send(Email)
+}
+class com.structural.FacadePattern.exercise2.email.OrderEmailTemplate {
++ String format(Object)
+}
+class com.structural.FacadePattern.exercise2.email.EmailFacade {
++ boolean sendOrderEmail(Order)
+}
+class com.structural.FacadePattern.exercise2.email.EmailBuilder {
++ EmailBuilder withTemplate(Template)
++ EmailBuilder withStationary(Stationary)
++ EmailBuilder forObject(Object)
++ Email build()
++ Email getEmail()
+}
+enum com.structural.FacadePattern.exercise2.email.TemplateType {
++  Email
++  NewsLetter
+}
+class com.structural.FacadePattern.exercise2.email.HalloweenStationary {
++ String getHeader()
++ String getFooter()
+}
+
+
+com.structural.FacadePattern.exercise2.email.Template <|-- com.structural.FacadePattern.exercise2.email.OrderEmailTemplate
+com.structural.FacadePattern.exercise2.email.Stationary <|.. com.structural.FacadePattern.exercise2.email.HalloweenStationary
+@enduml

@@ -1,0 +1,59 @@
+@startuml
+class com.structural.BridgePattern.exercise1.ArrayLinkedList {
+- {static} int DEFAULT_SIZE
+- Object[] data
+- int size
++ <<Create>> ArrayLinkedList()
++ void addFirst(T)
++ T removeFirst()
++ void addLast(T)
++ T removeLast()
+- void ensureCapacity(int)
+- void shiftOneRight()
+- void shiftOneLeft()
++ int getSize()
++ String toString()
+}
+interface com.structural.BridgePattern.exercise1.FifoCollection {
+~ void offer(T)
+~ T poll()
+}
+class com.structural.BridgePattern.exercise1.Queue {
+- LinkedList<T> list
++ <<Create>> Queue(LinkedList<T>)
++ void offer(T)
++ T poll()
+}
+interface com.structural.BridgePattern.exercise1.LinkedList {
+~ void addFirst(T)
+~ T removeFirst()
+~ void addLast(T)
+~ T removeLast()
+~ int getSize()
+}
+class com.structural.BridgePattern.exercise1.Client {
++ {static} void main(String[])
+}
+class com.structural.BridgePattern.exercise1.SinglyLinkedList {
+- int size
+- Node top
+- Node last
++ void addFirst(T)
++ T removeFirst()
++ void addLast(T)
++ T removeLast()
++ int getSize()
++ String toString()
+}
+class com.structural.BridgePattern.exercise1.SinglyLinkedList.Node {
+- Object data
+- Node next
+- <<Create>> Node(Object,Node)
+}
+
+
+com.structural.BridgePattern.exercise1.LinkedList <|.. com.structural.BridgePattern.exercise1.ArrayLinkedList
+com.structural.BridgePattern.exercise1.FifoCollection <|.. com.structural.BridgePattern.exercise1.Queue
+com.structural.BridgePattern.exercise1.LinkedList <|.. com.structural.BridgePattern.exercise1.SinglyLinkedList
+com.structural.BridgePattern.exercise1.SinglyLinkedList +.. com.structural.BridgePattern.exercise1.SinglyLinkedList.Node
+@enduml

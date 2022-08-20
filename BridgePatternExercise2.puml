@@ -1,0 +1,33 @@
+@startuml
+abstract class com.structural.BridgePattern.exercise2.Message {
++ Sender sender
++ String subject
++ String body
++ {abstract}void send()
+}
+class com.structural.BridgePattern.exercise2.Main {
++ {static} void main(String[])
+}
+interface com.structural.BridgePattern.exercise2.Sender {
+~ void sendMessage(String,String)
+}
+class com.structural.BridgePattern.exercise2.OutlookSender {
++ void sendMessage(String,String)
+}
+class com.structural.BridgePattern.exercise2.SystemMessage {
++ void send()
+}
+class com.structural.BridgePattern.exercise2.GmailSender {
++ void sendMessage(String,String)
+}
+class com.structural.BridgePattern.exercise2.UserMessage {
++ String UserComments
++ void send()
+}
+
+
+com.structural.BridgePattern.exercise2.Sender <|.. com.structural.BridgePattern.exercise2.OutlookSender
+com.structural.BridgePattern.exercise2.Message <|-- com.structural.BridgePattern.exercise2.SystemMessage
+com.structural.BridgePattern.exercise2.Sender <|.. com.structural.BridgePattern.exercise2.GmailSender
+com.structural.BridgePattern.exercise2.Message <|-- com.structural.BridgePattern.exercise2.UserMessage
+@enduml

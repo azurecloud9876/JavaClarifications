@@ -1,0 +1,26 @@
+@startuml
+class com.structural.CompositePattern.Exercise1.File {
+- String value
++ <<Create>> File(String)
++ void addChile(Component)
++ void travers()
+}
+class com.structural.CompositePattern.Exercise1.Main {
++ {static} void main(String[])
+}
+abstract class com.structural.CompositePattern.Exercise1.Component {
++ {abstract}void addChile(Component)
++ {abstract}void travers()
+}
+class com.structural.CompositePattern.Exercise1.Folder {
+- String value
+- ArrayList<Component> componentsList
++ <<Create>> Folder(String)
++ void addChile(Component)
++ void travers()
+}
+
+
+com.structural.CompositePattern.Exercise1.Component <|-- com.structural.CompositePattern.Exercise1.File
+com.structural.CompositePattern.Exercise1.Component <|-- com.structural.CompositePattern.Exercise1.Folder
+@enduml
