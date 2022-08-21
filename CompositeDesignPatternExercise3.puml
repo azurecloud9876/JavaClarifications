@@ -1,0 +1,33 @@
+@startuml
+class com.structural.CompositePattern.Exercise3.AssociateEngineer {
+- String empName
+- long empId
+- String position
+~ <<Create>> AssociateEngineer(long,String,String)
++ void showEmployeeDetails()
+}
+class com.structural.CompositePattern.Exercise3.Client {
++ {static} void main(String[])
+}
+interface com.structural.CompositePattern.Exercise3.Employee {
+~ void showEmployeeDetails()
+}
+class com.structural.CompositePattern.Exercise3.Manager {
+- String empName
+- long empId
+- String position
++ <<Create>> Manager(long,String,String)
++ void showEmployeeDetails()
+}
+class com.structural.CompositePattern.Exercise3.Directory {
+- List<Employee> empList
++ void showEmployeeDetails()
++ void addEmployee(Employee)
++ void removeEmployee(Employee)
+}
+
+
+com.structural.CompositePattern.Exercise3.Employee <|.. com.structural.CompositePattern.Exercise3.AssociateEngineer
+com.structural.CompositePattern.Exercise3.Employee <|.. com.structural.CompositePattern.Exercise3.Manager
+com.structural.CompositePattern.Exercise3.Employee <|.. com.structural.CompositePattern.Exercise3.Directory
+@enduml
