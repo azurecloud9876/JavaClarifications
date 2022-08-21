@@ -2,7 +2,7 @@ package com.structural.CompositePattern.Exercise1;
 
 public class File extends Component {
 
-    private String value;
+    private final String value;
 
     public File(String value) {
         this.value = value;

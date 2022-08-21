@@ -15,7 +15,7 @@ public class ErrorMessageFactory {
 		return FACTORY;
 	}
 	
-	private Map<ErrorType, SystemErrorMessage> errorMessages = new HashMap<>();
+	private final Map<ErrorType, SystemErrorMessage> errorMessages = new HashMap<>();
 	
 	private ErrorMessageFactory() {
 		errorMessages.put(ErrorType.GenericSystemError, 

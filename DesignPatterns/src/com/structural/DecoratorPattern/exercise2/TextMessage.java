@@ -3,7 +3,7 @@ package com.structural.DecoratorPattern.exercise2;
 //Concrete component. Object to be decorated
 public class TextMessage implements Message {
 
-	private String msg;
+	private final String msg;
 	
 	public TextMessage(String msg) {
 		this.msg = msg;

@@ -7,7 +7,7 @@ package com.structural.adapterPattern.exercise1;
 
 //Adapter
 public class BicycleAdapter implements Vehicle {
-    private Bicycle bicycle;
+    private final Bicycle bicycle;
 
 
     public BicycleAdapter(Bicycle bicycle) {

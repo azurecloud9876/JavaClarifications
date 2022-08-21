@@ -1,13 +1,12 @@
 package com.structural.CompositePattern.Exercise2;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 //Composite in the composite pattern
 public class Directory extends File {
 
-	private List<File> children = new ArrayList<>();
+	private final List<File> children = new ArrayList<>();
 	
 	public Directory(String name) {
 		super(name);
@@ -26,7 +25,7 @@ public class Directory extends File {
 
 	@Override
 	public File[] getFiles() {
-		return children.toArray(new File[children.size()]);
+		return children.toArray(new File[0]);
 	}
 
 	@Override

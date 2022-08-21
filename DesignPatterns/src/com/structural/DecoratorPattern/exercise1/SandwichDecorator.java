@@ -2,7 +2,7 @@ package com.structural.DecoratorPattern.exercise1;
 
 public abstract class SandwichDecorator implements Sandwich {
 
-    private Sandwich sandwich;
+    private final Sandwich sandwich;
 
     public SandwichDecorator(Sandwich sandwich) {
         this.sandwich = sandwich;

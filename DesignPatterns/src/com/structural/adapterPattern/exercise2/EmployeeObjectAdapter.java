@@ -5,7 +5,7 @@ package com.structural.adapterPattern.exercise2;
  */
 public class EmployeeObjectAdapter implements Customer {
 
-    private Employee adaptee;
+    private final Employee adaptee;
 
     public EmployeeObjectAdapter(Employee adaptee) {
         this.adaptee = adaptee;

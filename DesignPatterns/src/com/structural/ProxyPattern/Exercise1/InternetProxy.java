@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class InternetProxy implements ISP {
 
-    private List<String> blockedSites = Arrays.asList("tiktok", "porno");
+    private final List<String> blockedSites = Arrays.asList("tiktok", "porno");
 
     @Override
     public String serverSite(String url) {

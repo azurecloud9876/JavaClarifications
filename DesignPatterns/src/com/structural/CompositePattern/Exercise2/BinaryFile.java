@@ -3,7 +3,7 @@ package com.structural.CompositePattern.Exercise2;
 //Leaf node in composite pattern
 public class BinaryFile extends File {
 	
-	private long size;
+	private final long size;
 	
 	public BinaryFile(String name, long size) {
 		super(name);

@@ -4,38 +4,41 @@ package com.structural.BridgePattern.exercise1;
 //This implementation is a classic LinkedList using nodes
 //**NOT thread safe**
 public class SinglyLinkedList<T> implements LinkedList<T>{
-	
-	private class Node {
-		private Object data;
-		private Node next;
-		private Node(Object data, Node next) {
-			this.data = data;
-			this.next = next;
-		}
-	}
-	
-	private int size;
-	private Node top;
-	private Node last;
-	
+
 	@Override
 	public void addFirst(T element) {
-		if(top == null) {
-			last = top = new Node(element, null);	
+		if (top == null) {
+			last = top = new Node(element, null);
 		} else {
 			top = new Node(element, top);
 		}
 		size++;
 	}
 
+	private int size;
+	private Node top;
+	private Node last;
+
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder("[");
+		Node temp = top;
+		while (temp != null) {
+			result.append(temp.data).append(temp.next == null ? "" : ", ");
+			temp = temp.next;
+		}
+		result.append("]");
+		return result.toString();
+	}
+
 	@Override
 	public T removeFirst() {
-		if(top==null) {
+		if (top == null) {
 			return null;
 		}
 		@SuppressWarnings("unchecked")
-		T temp = (T)top.data;
-		if(top.next != null) {
+		T temp = (T) top.data;
+		if (top.next != null) {
 			top = top.next;
 		} else {
 			top = null;
@@ -86,16 +89,14 @@ public class SinglyLinkedList<T> implements LinkedList<T>{
 		return size;
 	}
 
-	@Override
-	public String toString() {
-		String result = "[";
-		Node temp = top;
-		while(temp!=null) {
-			result += temp.data + (temp.next == null?"":", ");
-			temp = temp.next;
+	private static class Node {
+		private final Object data;
+		private Node next;
+
+		private Node(Object data, Node next) {
+			this.data = data;
+			this.next = next;
 		}
-		result += "]";
-		return result;
 	}
-	
+
 }

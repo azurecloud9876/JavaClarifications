@@ -3,7 +3,7 @@ package com.structural.BridgePattern.exercise1;
 //A refined abstraction.
 public class Queue<T> implements FifoCollection<T>{
 
-	private LinkedList<T> list;
+	private final LinkedList<T> list;
 	
 	public Queue(LinkedList<T> list) {
 		this.list = list;
