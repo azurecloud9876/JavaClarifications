@@ -4,6 +4,7 @@ import com.main.exercise3.comparatorexample.dto.Customer;
 import com.main.exercise3.comparatorexample.implementation.CustomerListDataImpl;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -15,7 +16,10 @@ public class ListDataHelper extends CustomerListDataImpl {
 
 
     public void getCustomerListData1() {
-        listUtility1();
+        //listUtility1();
+        //listUtility2();
+        //listUtility3();
+        listUtility4();
     }
 
     private void listUtility1() {
@@ -27,7 +31,7 @@ public class ListDataHelper extends CustomerListDataImpl {
         }
         System.out.println("=========================================");
         //Java 8 Comparator - Order by First name
-        list1.sort(Comparator.comparing(byName -> byName.getName()));
+        list1.sort(Comparator.comparing(customer -> customer.getName()));
         //or
         list1 = temp;
         Comparator<Customer> sortCustomer = (o1, o2) -> o1.getName().compareTo(o2.getName());
@@ -48,8 +52,6 @@ public class ListDataHelper extends CustomerListDataImpl {
         Customer[] customers = list1.toArray(new Customer[list1.size()]);
         Arrays.parallelSort(customers, multiField);
 
-        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        numbers.forEach(System.out::println);
     }
 
     private void listUtility2() {
@@ -71,6 +73,40 @@ public class ListDataHelper extends CustomerListDataImpl {
                 .collect(Collectors.toList());
         //java 10
         List<Integer> copy4 = List.copyOf(dest);
+
+    }
+
+    private void listUtility3() {
+        // Returns consecutive sublists of a list, each of the same size (the final list may be smaller) - partitioning
+        final List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7);
+        final int chunkSize = 3;
+        final AtomicInteger counter = new AtomicInteger();
+
+        final Collection<List<Integer>> result = numbers.stream()
+                .collect(Collectors.groupingBy(it -> counter.getAndIncrement() / chunkSize))
+                .values();
+
+        System.out.println(result);
+    }
+
+    private void listUtility4() {
+        // Returns consecutive sublists of a list, each of the same size (the final list may be smaller) - partitioning
+        //https://e.printstacktrace.blog/divide-a-list-to-lists-of-n-size-in-Java-8/
+        final List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7);
+        final List<List<Integer>> result = new ArrayList<>();
+        final int chunkSize = 3;
+        final AtomicInteger counter = new AtomicInteger();
+
+        for (int number : numbers) {
+            System.out.println(counter.get());
+            if (counter.getAndIncrement() % chunkSize == 0) {
+                System.out.println("counter in");
+                result.add(new ArrayList<>());
+            }
+            result.get(result.size() - 1).add(number);
+        }
+        System.out.println(result);
+        System.out.println(result.size());
 
     }
 }
