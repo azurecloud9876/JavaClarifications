@@ -1,5 +1,8 @@
 package com.creational.builder.exercise2;
 
+import com.creational.builder.exercise2.bean.Document;
+import com.creational.builder.exercise2.builder.DocumentBuilder;
+
 public class Client {
 
     public static void main(String[] args) {

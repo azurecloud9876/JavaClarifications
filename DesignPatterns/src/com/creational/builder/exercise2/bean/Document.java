@@ -1,4 +1,4 @@
-package com.creational.builder.exercise2;
+package com.creational.builder.exercise2.bean;
 
 import java.io.Serializable;
 

@@ -1,11 +1,14 @@
-package com.creational.builder.exercise2;
+package com.creational.builder.exercise2.builder;
+
+import com.creational.builder.exercise2.AbstractBuilder;
+import com.creational.builder.exercise2.bean.Document;
 
 public class DocumentBuilder extends AbstractBuilder<Document, DocumentBuilder> {
 
     private final Document doc = new Document();
 
     //private String test;
-    DocumentBuilder() {
+    public DocumentBuilder() {
         availableBean = doc;
     }
 
