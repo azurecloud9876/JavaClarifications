@@ -109,4 +109,25 @@ public class ListDataHelper extends CustomerListDataImpl {
         System.out.println(result.size());
 
     }
+
+
+    private void listUtility5() {
+        //Finding Largest String in ArrayList
+
+        List<String> str = new ArrayList<>();
+        // Add names to ArrayList
+        str.add("Jim Bob");
+        str.add("Bobby Jones");
+        str.add("Rob Stiles");
+        var res = Collections.max(str, Comparator.comparing(String::length)); // or s -> s.length()
+        String max = str.stream().max(Comparator.comparing(String::length)).get();
+        Optional<String> op = str.stream().sorted((e1, e2) -> e1.length() > e2.length() ? -1 : 1).findFirst();
+
+
+       /* List<Integer> numList = Arrays.stream(str).map(String::length).collect(Collectors.toList());
+        Integer m = numList.stream().mapToInt(i->i).max().orElse(4000);  //get strings with their length
+        int k = numList.indexOf(m);  //index of String with Maximum Length
+        System.out.println(str.get(k)); //get your longest string*/
+
+    }
 }
