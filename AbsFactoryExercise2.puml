@@ -1,0 +1,38 @@
+@startuml
+class com.creational.abstractfactory.exercise2.MobileClient {
+~ Iandroid androidPhone
+~ Iios IosPhone
++ <<Create>> MobileClient(Imobile)
++ Iandroid getAndroidPhone()
++ String setAndroidPhone(Iandroid)
++ String getIosPhone()
+}
+class com.creational.abstractfactory.exercise2.Iphone {
++ String getModelDetails()
+}
+class com.creational.abstractfactory.exercise2.Main {
++ {static} void main(String[])
+}
+interface com.creational.abstractfactory.exercise2.Imobile {
+~ Iandroid GetAndroidPhone()
+~ Iios GetIosPhone()
+}
+interface com.creational.abstractfactory.exercise2.Iandroid {
+~ String getModelDetails()
+}
+class com.creational.abstractfactory.exercise2.SamsungGalaxy {
++ String getModelDetails()
+}
+class com.creational.abstractfactory.exercise2.Samsung {
++ Iandroid GetAndroidPhone()
++ Iios GetIosPhone()
+}
+interface com.creational.abstractfactory.exercise2.Iios {
+~ String getModelDetails()
+}
+
+
+com.creational.abstractfactory.exercise2.Iios <|.. com.creational.abstractfactory.exercise2.Iphone
+com.creational.abstractfactory.exercise2.Iandroid <|.. com.creational.abstractfactory.exercise2.SamsungGalaxy
+com.creational.abstractfactory.exercise2.Imobile <|.. com.creational.abstractfactory.exercise2.Samsung
+@enduml

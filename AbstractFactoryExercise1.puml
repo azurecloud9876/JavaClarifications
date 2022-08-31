@@ -1,0 +1,59 @@
+@startuml
+class com.coffeepoweredcrew.abstractfactory2.gcp.GoogleComputeEngineInstance {
++ void start()
++ void attachStorage(Storage)
++ void stop()
+}
+class com.coffeepoweredcrew.abstractfactory2.gcp.GoogleResourceFactory {
++ Instance createInstance(Capacity)
++ Storage createStorage(int)
+}
+class com.coffeepoweredcrew.abstractfactory2.gcp.GoogleCloudStorage {
++ String getId()
++ String toString()
+}
+class com.coffeepoweredcrew.abstractfactory2.aws.S3Storage {
++ String getId()
++ String toString()
+}
+class com.coffeepoweredcrew.abstractfactory2.Client {
+- ResourceFactory factory
++ Instance createServer(Instance.Capacity,int)
++ {static} void main(String[])
+}
+class com.coffeepoweredcrew.abstractfactory2.aws.AwsResourceFactory {
++ Instance createInstance(Capacity)
++ Storage createStorage(int)
+}
+interface com.coffeepoweredcrew.abstractfactory2.ResourceFactory {
+~ Instance createInstance(Instance.Capacity)
+~ Storage createStorage(int)
+}
+class com.coffeepoweredcrew.abstractfactory2.aws.Ec2Instance {
++ void start()
++ void attachStorage(Storage)
++ void stop()
++ String toString()
+}
+interface com.coffeepoweredcrew.abstractfactory2.Storage {
+~ String getId()
+}
+interface com.coffeepoweredcrew.abstractfactory2.Instance {
+~ void start()
+~ void attachStorage(Storage)
+~ void stop()
+}
+enum com.coffeepoweredcrew.abstractfactory2.Capacity {
++  micro
++  small
++  large
+}
+
+
+com.coffeepoweredcrew.abstractfactory2.Instance <|.. com.coffeepoweredcrew.abstractfactory2.gcp.GoogleComputeEngineInstance
+com.coffeepoweredcrew.abstractfactory2.ResourceFactory <|.. com.coffeepoweredcrew.abstractfactory2.gcp.GoogleResourceFactory
+com.coffeepoweredcrew.abstractfactory2.Storage <|.. com.coffeepoweredcrew.abstractfactory2.gcp.GoogleCloudStorage
+com.coffeepoweredcrew.abstractfactory2.Storage <|.. com.coffeepoweredcrew.abstractfactory2.aws.S3Storage
+com.coffeepoweredcrew.abstractfactory2.ResourceFactory <|.. com.coffeepoweredcrew.abstractfactory2.aws.AwsResourceFactory
+com.coffeepoweredcrew.abstractfactory2.Instance <|.. com.coffeepoweredcrew.abstractfactory2.aws.Ec2Instance
+@enduml
