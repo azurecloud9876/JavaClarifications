@@ -2,7 +2,7 @@ package com.creational.factory.exercise3;
 
 public class IceCreamFactory {
 
-    public static IceCream getInstance(String type) {
+    public static IceCream getInstance(String type) { //getIceCream
 
         switch (type) {
             case "1":
