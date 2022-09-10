@@ -1,0 +1,24 @@
+package com.behavioral.command.exercise1;
+
+//A Concrete implementation of Command.
+public class AddMemberCommand implements Command {
+
+	private final String emailAddress;
+
+	private final String listName;
+
+	private final EWSService receiver;
+
+	public AddMemberCommand(String email, String listName, EWSService service) {
+		this.emailAddress = email;
+		this.listName = listName;
+		this.receiver = service;
+	}
+
+	@Override
+	public void execute() {
+		receiver.addMember(emailAddress, listName);
+	}
+
+
+}
