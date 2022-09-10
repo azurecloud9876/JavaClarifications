@@ -8,7 +8,7 @@ import java.util.Objects;
 public class Client1 {
     public static void main(String[] args) {
         List list = new ArrayList<>();
-        list.add("Pavan");
+        list.add("testtttttt");
         list.add(null);
         addIgnoreNull(list, 1); // NullPointerException: Collection is empty
         System.out.println(list.isEmpty());//NullPointerException: Cannot invoke "java.util.List.isEmpty()"
