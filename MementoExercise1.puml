@@ -1,0 +1,21 @@
+@startuml
+class com.behavioral.momento.exercise1.Memento {
+- String state
++ String getState()
+}
+class com.behavioral.momento.exercise1.CareTaker {
+- List<Memento> mementoList
++ void add(Memento)
++ Memento get(int)
+}
+class com.behavioral.momento.exercise1.Originator {
+- String state
++ String getState()
++ void setState(String)
++ Memento saveStateToMemento()
++ void getStateFromMemento(Memento)
+}
+class com.behavioral.momento.exercise1.MementoPatternDemo {
++ {static} void main(String[])
+}
+@enduml

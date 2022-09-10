@@ -1,0 +1,38 @@
+@startuml
+interface com.behavioral.visitor.exercise2.ShapeVisitor {
+~ void visit(Rectangle)
+~ void visit(Circle)
+}
+class com.behavioral.visitor.exercise2.PrintAreaVisitor {
++ void visit(Rectangle)
++ void visit(Circle)
+}
+class com.behavioral.visitor.exercise2.Main {
+}
+class com.behavioral.visitor.exercise2.VisitorDemo {
++ {static} void main(String[])
+}
+interface com.behavioral.visitor.exercise2.Shape {
+~ void accept(ShapeVisitor)
+}
+class com.behavioral.visitor.exercise2.Rectangle {
+- double length
+- double width
++ void accept(ShapeVisitor)
++ double getLength()
++ void setLength(double)
++ double getWidth()
++ void setWidth(double)
+}
+class com.behavioral.visitor.exercise2.Circle {
+- double radius
++ void accept(ShapeVisitor)
++ double getRadius()
++ void setRadius(double)
+}
+
+
+com.behavioral.visitor.exercise2.ShapeVisitor <|.. com.behavioral.visitor.exercise2.PrintAreaVisitor
+com.behavioral.visitor.exercise2.Shape <|.. com.behavioral.visitor.exercise2.Rectangle
+com.behavioral.visitor.exercise2.Shape <|.. com.behavioral.visitor.exercise2.Circle
+@enduml

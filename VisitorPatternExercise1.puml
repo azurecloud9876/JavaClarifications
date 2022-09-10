@@ -1,0 +1,95 @@
+@startuml
+interface com.coffeepoweredcrew.visitor.Visitor {
+~ void visit(Programmer)
+~ void visit(ProjectLead)
+~ void visit(Manager)
+~ void visit(VicePresident)
+}
+class com.coffeepoweredcrew.visitor.VicePresident {
+- List<Employee> directReports
++ Collection<Employee> getDirectReports()
++ void accept(Visitor)
+}
+class com.coffeepoweredcrew.visitor.Manager {
+- List<Employee> directReports
++ Collection<Employee> getDirectReports()
++ void accept(Visitor)
+}
+abstract class com.coffeepoweredcrew.visitor.AbstractEmployee {
+- int performanceRating
+- String name
+- {static} int employeeIdCounter
+- int employeeId
++ String getName()
++ int getPerformanceRating()
++ void setPerformanceRating(int)
++ Collection<Employee> getDirectReports()
++ int getEmployeeId()
+}
+class com.coffeepoweredcrew.visitor.PerformanceRating {
+- int id
+- int personalRating
+- int teamAverageRating
+- int finalRating
++ int getId()
++ int getPersonalRating()
++ int getTeamAverageRating()
++ int getFinalRating()
++ void setTeamAverageRating(int)
++ void setFinalRating(int)
+}
+class com.coffeepoweredcrew.visitor.PrintVisitor {
+- Ratings ratings
++ void visit(Programmer)
++ void visit(ProjectLead)
++ void visit(Manager)
++ void visit(VicePresident)
+- String getRatings(Employee)
+}
+class com.coffeepoweredcrew.visitor.Client {
++ {static} void main(String[])
+- {static} Employee buildOrganization()
+- {static} void visitOrgStructure(Employee,Visitor)
+- {static} void appraisal(Employee,Random)
+}
+class com.coffeepoweredcrew.visitor.AppraisalVisitor {
+- Ratings ratings
++ void visit(Programmer)
++ void visit(ProjectLead)
++ void visit(Manager)
++ void visit(VicePresident)
+- int getTeamAverage(Employee)
++ Ratings getFinalRatings()
+}
+class com.coffeepoweredcrew.visitor.AppraisalVisitor.Ratings {
++ int getFinalRating(int)
+}
+class com.coffeepoweredcrew.visitor.ProjectLead {
+- List<Employee> directReports
++ Collection<Employee> getDirectReports()
++ void accept(Visitor)
+}
+class com.coffeepoweredcrew.visitor.Programmer {
+- String skill
++ String getSkill()
++ void accept(Visitor)
+}
+interface com.coffeepoweredcrew.visitor.Employee {
+~ int getPerformanceRating()
+~ void setPerformanceRating(int)
+~ Collection<Employee> getDirectReports()
+~ int getEmployeeId()
+~ void accept(Visitor)
+}
+
+
+com.coffeepoweredcrew.visitor.AbstractEmployee <|-- com.coffeepoweredcrew.visitor.VicePresident
+com.coffeepoweredcrew.visitor.AbstractEmployee <|-- com.coffeepoweredcrew.visitor.Manager
+com.coffeepoweredcrew.visitor.Employee <|.. com.coffeepoweredcrew.visitor.AbstractEmployee
+com.coffeepoweredcrew.visitor.Visitor <|.. com.coffeepoweredcrew.visitor.PrintVisitor
+com.coffeepoweredcrew.visitor.Visitor <|.. com.coffeepoweredcrew.visitor.AppraisalVisitor
+com.coffeepoweredcrew.visitor.AppraisalVisitor +.. com.coffeepoweredcrew.visitor.AppraisalVisitor.Ratings
+com.coffeepoweredcrew.visitor.HashMap <|-- com.coffeepoweredcrew.visitor.AppraisalVisitor.Ratings
+com.coffeepoweredcrew.visitor.AbstractEmployee <|-- com.coffeepoweredcrew.visitor.ProjectLead
+com.coffeepoweredcrew.visitor.AbstractEmployee <|-- com.coffeepoweredcrew.visitor.Programmer
+@enduml

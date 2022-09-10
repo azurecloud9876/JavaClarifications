@@ -1,0 +1,55 @@
+@startuml
+interface com.coffeepoweredcrew.interpreter.PermissionExpression {
+~ boolean interpret(User)
+}
+class com.coffeepoweredcrew.interpreter.Client {
++ {static} void main(String[])
+}
+class com.coffeepoweredcrew.interpreter.AndExpression {
+- PermissionExpression expression1
+- PermissionExpression expression2
++ boolean interpret(User)
++ String toString()
+}
+class com.coffeepoweredcrew.interpreter.ExpressionBuilder {
+- Stack<PermissionExpression> permissions
+- Stack<String> operators
++ PermissionExpression build(Report)
+- void parse(String)
+- void buildExpressions()
+}
+class com.coffeepoweredcrew.interpreter.Report {
+- String name
+- String permission
++ String getName()
++ String getPermission()
+}
+class com.coffeepoweredcrew.interpreter.OrExpression {
+- PermissionExpression expression1
+- PermissionExpression expression2
++ boolean interpret(User)
++ String toString()
+}
+class com.coffeepoweredcrew.interpreter.Permission {
+- String permission
++ boolean interpret(User)
++ String toString()
+}
+class com.coffeepoweredcrew.interpreter.User {
+- List<String> permissions
+- String username
++ List<String> getPermissions()
++ String getUsername()
+}
+class com.coffeepoweredcrew.interpreter.NotExpression {
+- PermissionExpression expression
++ boolean interpret(User)
++ String toString()
+}
+
+
+com.coffeepoweredcrew.interpreter.PermissionExpression <|.. com.coffeepoweredcrew.interpreter.AndExpression
+com.coffeepoweredcrew.interpreter.PermissionExpression <|.. com.coffeepoweredcrew.interpreter.OrExpression
+com.coffeepoweredcrew.interpreter.PermissionExpression <|.. com.coffeepoweredcrew.interpreter.Permission
+com.coffeepoweredcrew.interpreter.PermissionExpression <|.. com.coffeepoweredcrew.interpreter.NotExpression
+@enduml

@@ -1,0 +1,61 @@
+@startuml
+class com.coffeepoweredcrew.memento.command.RemoveStepCommand {
+- String step
++ void execute()
+}
+abstract class com.coffeepoweredcrew.memento.command.AbstractWorkflowCommand {
+# WorkflowDesigner.Memento memento
+# WorkflowDesigner receiver
++ void undo()
+}
+class com.coffeepoweredcrew.memento.command.CreateCommand {
+- String name
++ void execute()
+}
+class com.coffeepoweredcrew.memento.WorkflowDesigner {
+- Workflow workflow
++ void createWorkflow(String)
++ Workflow getWorkflow()
++ Memento getMemento()
++ void setMemento(Memento)
++ void addStep(String)
++ void removeStep(String)
++ void print()
+}
+class com.coffeepoweredcrew.memento.WorkflowDesigner.Memento {
+- String[] steps
+- String name
+- String[] getSteps()
+- String getName()
+- boolean isEmpty()
+}
+class com.coffeepoweredcrew.memento.command.AddStepCommand {
+- String step
++ void execute()
+}
+class com.coffeepoweredcrew.memento.Workflow {
+- LinkedList<String> steps
+- String name
++ String toString()
++ void addStep(String)
++ boolean removeStep(String)
++ String[] getSteps()
++ String getName()
+}
+interface com.coffeepoweredcrew.memento.command.WorkflowCommand {
+~ void execute()
+~ void undo()
+}
+class com.coffeepoweredcrew.memento.Client {
++ {static} void main(String[])
+- {static} void undoLastCommand(LinkedList<WorkflowCommand>)
+- {static} LinkedList<WorkflowCommand> runCommands(WorkflowDesigner)
+}
+
+
+com.coffeepoweredcrew.memento.command.AbstractWorkflowCommand <|-- com.coffeepoweredcrew.memento.command.RemoveStepCommand
+com.coffeepoweredcrew.memento.command.WorkflowCommand <|.. com.coffeepoweredcrew.memento.command.AbstractWorkflowCommand
+com.coffeepoweredcrew.memento.command.AbstractWorkflowCommand <|-- com.coffeepoweredcrew.memento.command.CreateCommand
+com.coffeepoweredcrew.memento.WorkflowDesigner +.. com.coffeepoweredcrew.memento.WorkflowDesigner.Memento
+com.coffeepoweredcrew.memento.command.AbstractWorkflowCommand <|-- com.coffeepoweredcrew.memento.command.AddStepCommand
+@enduml
