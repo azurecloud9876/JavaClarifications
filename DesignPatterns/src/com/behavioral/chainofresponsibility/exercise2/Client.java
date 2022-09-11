@@ -1,13 +1,13 @@
 package com.behavioral.chainofresponsibility.exercise2;
 
-import com.coffeepoweredcrew.chainofresponsibility.LeaveApplication.Type;
+
 
 import java.time.LocalDate;
 
 public class Client {
 
 	public static void main(String[] args) {
-		LeaveApplication application = LeaveApplication.getBuilder().withType(Type.Sick)
+		LeaveApplication application = LeaveApplication.getBuilder().withType(LeaveApplication.Type.Sick)
 				.from(LocalDate.now()).to(LocalDate.of(2018, 2, 28))
 				.build();
 		System.out.println(application);

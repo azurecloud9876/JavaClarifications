@@ -2,7 +2,30 @@ package com.behavioral.visitor.exercise1;
 
 import java.util.Date;
 import java.util.Random;
-
+/*
+ * ******************* Behavioral Design pattern *************
+ * Context: Performing operations on elements of an aggregate.
+ * Problem: How to execute some behavior on an aggregate of different objects.
+ * Forces:
+ *    - Object aggregate contains different interfaces.
+ *    - Avoid polluting classes with unrelated operations.
+ *    - Structure rarely changes.
+ * Solution :
+ *    - Implement the functionality for each different object type in an visitor.
+ *    - Implement means to apply the visitor to every object.
+ * Consequences:
+ *    + Makes adding new functionality easy
+ *    + Combines related functions.
+ *    + Account for different object types.
+ *    + Can accumulate state.
+ *    ~ Who traverses the aggregate? How ?
+ *    ~ Double-Dispatch or not?
+ *    - Adding new class types is expensive
+ *    - Visitor may need access to private members (breaks encapsulation)
+ * 1. Do you have a use case where additional behaviors needs to be added to entity without changing it again and again.
+ * 2. Do you have a use case where an entity can be acted upon by different entities to perform any operation.
+ *
+ * */
 public class Client {
 
     public static void main(String[] args) {

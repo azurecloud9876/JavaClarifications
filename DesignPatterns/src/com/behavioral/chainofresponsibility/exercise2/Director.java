@@ -1,6 +1,6 @@
 package com.behavioral.chainofresponsibility.exercise2;
 
-import com.coffeepoweredcrew.chainofresponsibility.LeaveApplication.Type;
+
 
 //A concrete handler
 public class Director extends Employee {
@@ -11,10 +11,10 @@ public class Director extends Employee {
 
 	@Override
 	protected boolean processRequest(LeaveApplication application) {
-		if (application.getType() == Type.PTO) {
-			application.approve(getApproverRole());
-			return true;
-		}
+        if (application.getType() == LeaveApplication.Type.PTO) {
+            application.approve(getApproverRole());
+            return true;
+        }
 		return false;
 	}
 
