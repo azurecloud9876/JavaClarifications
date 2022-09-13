@@ -10,4 +10,20 @@ public class Address {
         this.locality = locality;
         this.city = city;
     }
+
+    public String getLocality() {
+        return locality;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 }

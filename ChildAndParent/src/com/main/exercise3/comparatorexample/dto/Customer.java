@@ -3,9 +3,23 @@ package com.main.exercise3.comparatorexample.dto;
 
 public class Customer {
 
-    private final Integer id;
-    private final String name;
-    private final Address address;
+    private Integer id;
+    private String name;
+    private Address address;
+
+    public Integer withsetId(Integer id) {
+        this.id = id;
+
+        return id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 
     public Customer(Integer id, String name, String locality, String city) {
         this.id = id;
@@ -24,4 +38,6 @@ public class Customer {
     public Address getAddress() {
         return address;
     }
+
+
 }

@@ -5,6 +5,7 @@ import com.main.exercise3.comparatorexample.implementation.CustomerListDataImpl;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -19,7 +20,7 @@ public class ListDataHelper extends CustomerListDataImpl {
         //listUtility1();
         //listUtility2();
         //listUtility3();
-        listUtility4();
+        listUtility6();
     }
 
     private void listUtility1() {
@@ -32,6 +33,9 @@ public class ListDataHelper extends CustomerListDataImpl {
         System.out.println("=========================================");
         //Java 8 Comparator - Order by First name
         list1.sort(Comparator.comparing(customer -> customer.getName()));
+        list1.forEach(a -> System.out.println(a));
+        //list1.stream().collect(Collectors.toSet());
+        list1.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
         //or
         list1 = temp;
         Comparator<Customer> sortCustomer = (o1, o2) -> o1.getName().compareTo(o2.getName());
@@ -57,6 +61,7 @@ public class ListDataHelper extends CustomerListDataImpl {
     private void listUtility2() {
 
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        numbers.sort(Comparator.naturalOrder());
         numbers.forEach(System.out::println);
         numbers.forEach((n) -> System.out.println(n));
         //numbers.forEach((n) -> methodCustom(n));
@@ -128,6 +133,58 @@ public class ListDataHelper extends CustomerListDataImpl {
         Integer m = numList.stream().mapToInt(i->i).max().orElse(4000);  //get strings with their length
         int k = numList.indexOf(m);  //index of String with Maximum Length
         System.out.println(str.get(k)); //get your longest string*/
+
+    }
+
+    private void listUtility6() {
+        List<Customer> list1 = getListData();
+        var map1 = list1.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        System.out.println(map1);
+        var map2 = list1.stream().collect(Collectors.groupingBy(Customer::getName));
+        System.out.println(map2);
+        var db1 = list1.stream().mapToInt(customer -> customer.getId()).average();
+        System.out.println(db1);
+        var db2 = list1.stream().mapToInt(customer -> customer.getId()).average().getAsDouble();
+        System.out.println(db2);
+        var fil1 = list1.stream()
+                .filter(zone -> zone.getAddress().getLocality().equalsIgnoreCase("Zone2"))
+                .filter(name -> name.getName().equalsIgnoreCase("Cat"))
+                .collect(Collectors.toList());
+        System.out.println(fil1);
+        var fil2 = list1.stream()
+                .filter(customer -> customer.getName().equalsIgnoreCase("John"))
+                .map(mapID -> mapID.withsetId(10))
+                .collect(Collectors.toList());
+        System.out.println(fil2);
+
+        var fil3 = list1.stream()
+                .filter(customer -> customer.getName().equalsIgnoreCase("John"))
+                .min(Comparator.comparing(Customer::getId));
+        System.out.println(fil3);
+
+
+    }
+
+    public Map<String, List<Customer>> groupByJobTitle(List<Customer> employeeList) {
+        Map<String, List<Customer>> resultMap = new HashMap<>();
+        for (int i = 0; i < employeeList.size(); i++) {
+            Customer employee = employeeList.get(i);
+            List<Customer> employeeSubList = resultMap.getOrDefault(employee.getName(), new ArrayList<Customer>());
+            employeeSubList.add(employee);
+            resultMap.put(employee.getName(), employeeSubList);
+        }
+        return resultMap;
+    }
+
+    public Map<String, List<Customer>> groupByJobTitle_java8(List<Customer> employeeList) {
+        return employeeList.stream().collect(Collectors.groupingBy(Customer::getName));
+    }
+
+    private void listUtility7() {
+        int[] A = {1, 3, 6, 4, 1, 2};
+        List a = List.of(A);
+        a.sort(Comparator.comparing(Object::hashCode));
+        a.forEach(System.out::println);
 
     }
 }
