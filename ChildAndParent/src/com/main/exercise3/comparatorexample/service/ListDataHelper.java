@@ -162,6 +162,20 @@ public class ListDataHelper extends CustomerListDataImpl {
                 .min(Comparator.comparing(Customer::getId));
         System.out.println(fil3);
 
+       /*list1.stream()
+                .filter(customer -> customer.getName().equalsIgnoreCase("John"))
+                .map(cust-> new Customer(11, "Daniel", "Zone1", "city1"))
+                .forEach(list1::add);//java.util.ConcurrentModificationException
+        list1.forEach(System.out::println);*/
+
+        Stream<Customer> pointsResults = Stream.concat(list1.stream(),
+                list1.stream()
+                        .filter(customer -> customer.getName().equalsIgnoreCase("John"))
+                        .map(cust -> new Customer(11, "Daniel", "Zone1", "city1")));
+
+        List<Customer> result = list1.stream()
+                .filter(customer -> customer.getName().equalsIgnoreCase("John"))
+                .collect(Collectors.toCollection(ArrayList::new));
 
     }
 

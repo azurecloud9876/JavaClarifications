@@ -1,0 +1,31 @@
+@startuml
+interface com.behavioral.visitor.exercise3.Visitor {
++ void visit(Bank)
+}
+class com.behavioral.visitor.exercise3.EmailVisitor {
++ void sendMails(List<Client>)
++ void visit(Bank)
+}
+class com.behavioral.visitor.exercise3.Main {
++ {static} void main(String[])
+}
+class com.behavioral.visitor.exercise3.Bank {
+- int branchesInsured
++ void accept(Visitor)
+}
+abstract class com.behavioral.visitor.exercise3.Client {
+- String name
+- String address
+- String number
++ {abstract}void accept(Visitor)
+}
+class com.behavioral.visitor.exercise3.SMSVisitor {
++ void sendMails(List<Client>)
++ void visit(Bank)
+}
+
+
+com.behavioral.visitor.exercise3.Visitor <|.. com.behavioral.visitor.exercise3.EmailVisitor
+com.behavioral.visitor.exercise3.Client <|-- com.behavioral.visitor.exercise3.Bank
+com.behavioral.visitor.exercise3.Visitor <|.. com.behavioral.visitor.exercise3.SMSVisitor
+@enduml
